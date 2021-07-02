@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import './App.css';
 
 function App() {
-  const [{count1, count2}, setCount] = useState({count1: 10, count2: 20})
+  const [count1, setCount] = useState(10)
+  const [count2, setCount2] = useState(20)
   return (
     <div className="App">
-      <button onClick={()=> setCount(currentState => ({
-        ...currentState,
-        count1: currentState.count1 +1
-      }))}
+      <button onClick={()=> {
+        setCount(c => c+1);
+        setCount2(c=> c+3)
+      }
+      }
       >+</button>
       <div>count1: {count1}</div>
       <div>count2: {count2}</div>
