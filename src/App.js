@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {useForm}  from './useForm';
-import { UseFetch } from './UseFetch';
+import { useFetch } from './UseFetch';
 import './App.css';
 
 function App() {
@@ -9,13 +9,13 @@ function App() {
   const [count, setCount] = useState(()=> 
   JSON.parse(localStorage.getItem('count'))
   );
-  const {data, loading} = UseFetch(`http://numbersapi.com/42`);
+  const {data, loading} = useFetch(`http://numbersapi.com/${count}/trivia`);
 
   useEffect(()=> localStorage.setItem('count', JSON.stringify(count)), [count]);
   
   return (
     <div className="App">
-      <div></div>
+      <div>{!data ? "loading.." : data}</div>
       <div>count: {count}</div>
       <button onClick={()=> setCount(c=> c+1)}>Increment count</button>
       <input name="email" value={values.email} onChange={handleChange}/>
